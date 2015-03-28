@@ -18,11 +18,15 @@ class ViewController: UIViewController {
     
     
     var myTigers:[Tiger] = []
+    var myLions: [Lion] = []
+    
     var currentIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        // Tiger struct instances
         
         // Instance 1
         var myTiger = Tiger()
@@ -82,8 +86,25 @@ class ViewController: UIViewController {
         
         myTigers += [secondTiger, thirdTiger, fourthTiger]
         
+        // Lion class instances
         
+        // Instance 1
+        var lion = Lion()
+        lion.age = 4
+        lion.isAlphaMale = false
+        lion.image = UIImage(named: "Lion.jpg")
+        lion.name = "Mufasa"
+        lion.subspecies = "West African"
         
+        // Instance 2
+        var lioness = Lion()
+        lioness.age = 3
+        lioness.isAlphaMale = false
+        lioness.image = UIImage(named: "Lioness.jpg")
+        lioness.name = "Sarabi"
+        lioness.subspecies = "Barbary"
+        
+        self.myLions += [lion,lioness]
         
     }
 
