@@ -29,11 +29,20 @@ class ViewController: UIViewController {
     var lemonsToMix = 0
     var iceCubesToMix = 0
     
+    var weatherArray:[[Int]] = [[-10,-9,-5,-7],[5,8,10,9],[22,25,27,23]]
+    var weatherToday:[Int] = [0,0,0,0]
+    var weatherImageView: UIImageView = UIImageView(frame: CGRect(x: 20, y: 50, width: 50, height: 50))
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        self.view.addSubview(weatherImageView)
+        
         updateMainView()
+        simulateWeatherToday()
         
     }
 
@@ -163,8 +172,9 @@ class ViewController: UIViewController {
     // IBAction Start
     
     @IBAction func startDayButtonPressed(sender: AnyObject) {
+        let average = findAverage(weatherToday)
         
-        let customers = Int(arc4random_uniform(UInt32(11)))
+        let customers = Int(arc4random_uniform(UInt32(abs(average))))
         println("Customers: \(customers)")
         
         if lemonsToMix == 0 || iceCubesToMix == 0 {
@@ -198,22 +208,14 @@ class ViewController: UIViewController {
             lemonsToMix = 0
             iceCubesToMix = 0
             
+            simulateWeatherToday()
             updateMainView()
+            
         }
     }
     
     
     
-        
-        
-        
-    
-    
-    
-        
-        
-        
-        
     
     // ----------------
     // Helper Functions
@@ -236,8 +238,35 @@ class ViewController: UIViewController {
         var alert = UIAlertController(title: header, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
-        
-        
     }
+    
+    func simulateWeatherToday()
+    {
+        let index = Int(arc4random_uniform(UInt32(weatherToday.count)))
+        weatherToday = weatherArray[index]
+        
+        switch index
+        {
+        case 0: weatherImageView.image = UIImage(named: "Cold")
+        case 1: weatherImageView.image = UIImage(named: "Warm")
+        default: weatherImageView.image = UIImage(named: "Warm")
+        }
+    }
+    
+    func findAverage(data:[Int]) -> Int
+    {
+        var sum = 0
+        for x in data
+        {
+            sum += x
+        }
+        
+        var average:Double = Double(sum) / Double(data.count)
+        var rounded:Int = Int(ceil(average)) // Ceil throws error
+   
+        
+        return rounded
+    }
+    
     
 }
