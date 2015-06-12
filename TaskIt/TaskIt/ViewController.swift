@@ -16,7 +16,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var taskArray: [TaskModel] = []
     
     
-    
+    // Loads first time only
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -34,6 +34,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.reloadData()
     }
     
+    // Load everytime main ViewController loads
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        self.tableView.reloadData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -41,7 +48,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     
     // --------------------------------------------------------------------------
-    
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -53,6 +59,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             let thisTask = taskArray[indexPath!.row]
             
             detailVC.detailTaskModel = thisTask
+            detailVC.mainVC = self
+            
+        }
+        else if segue.identifier == "showTaskAdd"
+        {
+            let addTaskVC:AddTaskViewController = segue.destinationViewController as AddTaskViewController
+            
+            addTaskVC.mainVC = self
             
         }
     }

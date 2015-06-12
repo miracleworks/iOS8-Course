@@ -16,7 +16,6 @@ class AddTaskViewController: UIViewController {
     @IBOutlet weak var dueDatePicker: UIDatePicker!
     
     
-    
     var mainVC :ViewController!
     
     
@@ -36,5 +35,11 @@ class AddTaskViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 
+    @IBAction func addTaskButtonTapped(sender: UIButton) {
+        var task = TaskModel(task: taskTextField.text, subTask: subTaskTextField.text, date: dueDatePicker.date)
+        mainVC.taskArray.append(task)
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
   
 }

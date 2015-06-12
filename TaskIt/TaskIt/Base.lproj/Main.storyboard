@@ -116,7 +116,11 @@
                                 <action selector="cancelButtonTapped:" destination="8W2-J7-UQA" id="coz-id-6RI"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="5yP-aa-nFg"/>
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="5yP-aa-nFg">
+                            <connections>
+                                <action selector="doneBarButtonItemPressed:" destination="8W2-J7-UQA" id="1xz-0Y-JX7"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="dueDatePicker" destination="jxs-pO-9ga" id="pwW-iP-vbE"/>
@@ -154,6 +158,9 @@
                                 <state key="normal" title="Add Task">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="addTaskButtonTapped:" destination="UCA-vM-8hP" eventType="touchUpInside" id="Pvu-ex-Hen"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="doH-dD-Cyc">
                                 <rect key="frame" x="16" y="87" width="280" height="30"/>

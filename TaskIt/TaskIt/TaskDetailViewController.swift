@@ -11,6 +11,7 @@ import UIKit
 class TaskDetailViewController: UIViewController {
 
     var detailTaskModel: TaskModel!
+    var mainVC: ViewController!
     
     @IBOutlet weak var taskTextField: UITextField!
     @IBOutlet weak var subTaskTextField: UITextField!
@@ -25,7 +26,6 @@ class TaskDetailViewController: UIViewController {
         self.subTaskTextField.text = detailTaskModel.subTask
         self.dueDatePicker.date = detailTaskModel.date
         
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,5 +37,17 @@ class TaskDetailViewController: UIViewController {
         self.navigationController?.popViewControllerAnimated(true)
     }
     
+    @IBAction func doneBarButtonItemPressed(sender: UIBarButtonItem) {
+        
+        // Update
+        var task = TaskModel(task: taskTextField.text, subTask: subTaskTextField.text, date: dueDatePicker.date)
+        
+        mainVC.taskArray[mainVC.tableView.indexPathForSelectedRow()!.row] = task
+        
+        
+        // Navigate back
+        self.navigationController?.popViewControllerAnimated(true)
+        
+    }
 
 }
