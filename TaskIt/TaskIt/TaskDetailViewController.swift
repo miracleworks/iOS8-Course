@@ -13,6 +13,9 @@ class TaskDetailViewController: UIViewController {
     var detailTaskModel: TaskModel!
     var mainVC: ViewController!
     
+    var indexPath: Int! //Problem workaround
+    
+    
     @IBOutlet weak var taskTextField: UITextField!
     @IBOutlet weak var subTaskTextField: UITextField!
     @IBOutlet weak var dueDatePicker: UIDatePicker!
@@ -40,10 +43,15 @@ class TaskDetailViewController: UIViewController {
     @IBAction func doneBarButtonItemPressed(sender: UIBarButtonItem) {
         
         // Update
-        var task = TaskModel(task: taskTextField.text, subTask: subTaskTextField.text, date: dueDatePicker.date)
+        var task = TaskModel(task: taskTextField.text, subTask: subTaskTextField.text, date: dueDatePicker.date, isCompleted: false)
         
-        mainVC.taskArray[mainVC.tableView.indexPathForSelectedRow()!.row] = task
+        //Problem Here -----------------------------------------------------------
+        //Video: Task It: Pop the TaskDetailViewCnotroller
         
+        //mainVC.taskArray[mainVC.tableView.indexPathForSelectedRow()!.row] = task
+        //------------------------------------------------------------------------
+        
+        mainVC.baseArray[0][indexPath] = task //Problem workaround
         
         // Navigate back
         self.navigationController?.popViewControllerAnimated(true)
